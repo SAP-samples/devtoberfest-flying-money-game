@@ -1,0 +1,132 @@
+{
+  "_version": "1.40.0",
+  "sap.app": {
+    "id": "flying.money.game",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "The Flying Money Game",
+    "description": "The Flying Money Game",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap-ux/fiori-freestyle-writer:basic",
+      "version": "0.12.4"
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.102.0",
+      "libs": {
+        "sap.ui.core": {},
+        "sap.m": {},
+        "sap.f": {}
+      }
+    },
+    "config": {
+			"fullWidth": true
+		},
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "flying.money.game.i18n.i18n",
+          "supportedLocales": ["en", "de"],
+		      "fallbackLocale": "en"
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.f.routing.Router",
+        "type": "View",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "flying.money.game.view",
+        "controlId": "fcl",
+        "controlAggregation": "beginColumnPages",
+        "transition": "slide",
+        "bypassed": {}
+      },
+      "routes": [
+        {
+          "name": "Leaderboard",
+          "pattern": ":layout:",
+          "target": [
+            "Leaderboard"
+          ]
+        },
+        {
+          "name": "Game",
+          "pattern": "Game/{layout}/{mode}",
+          "target": [
+            "Leaderboard",
+            "Game"
+          ]
+        },
+        {
+          "name": "Admin",
+          "pattern": "Admin/{layout}",
+          "target": [
+            "Leaderboard",
+            "Admin"
+          ]
+        }
+      ],
+      "targets": {
+        "Leaderboard": {
+          "viewName": "Leaderboard",
+          "viewLevel": 1,
+          "viewId": "Leaderboard"
+        },
+        "Game": {
+          "viewName": "Game",
+          "viewId": "Game",
+          "viewLevel": 1,
+          "controlAggregation": "midColumnPages"
+        },
+        "Admin": {
+          "viewName": "Admin",
+          "viewId": "Admin",
+          "viewLevel": 1,
+          "controlAggregation": "midColumnPages"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "flying.money.game.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "app"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+---
+applications:
+- name: flying-money-game
+  buildpacks:
+  - https://github.com/cloudfoundry/staticfile-buildpack
+  random-route: false
+  memory: 256M
+  disk_quota: 256M
+  path: build/dist

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta
+      name="description"
+      content="flying.money.game"
+    />
+    <title>The Flying Money Game</title>
+    <style>
+        html, body, body > div, #container, #container-uiarea {
+            height: 100%;
+        }
+    </style>
+
+    <link rel="icon" type="image/png" href="money_with_wings.png">
+    <link rel="apple-touch-icon" type="image/png" href="money_with_wings.png" />
+    <link href="money_with_wings.png" rel="shortcut icon" type="image/x-icon" />
+
+    <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.21.0/firebase-firestore.js"></script>
+
+    <script
+        id="sap-ui-bootstrap"
+        src="resources/sap-ui-core.js"
+        data-sap-ui-theme="sap_horizon_dark"
+        data-sap-ui-resourceroots='{
+            "flying.money.game": "./"
+        }'
+        data-sap-ui-oninit="module:sap/ui/core/ComponentSupport"
+        data-sap-ui-compatVersion="edge"
+        data-sap-ui-async="true"
+        data-sap-ui-frameOptions="trusted"
+        data-sap-ui-loglevel="warning"
+    ></script>
+
+</head>
+<body class="sapUiBody sapUiSizeCompact" id="content">
+    <div
+        data-sap-ui-component
+        data-name="flying.money.game"
+        data-id="container"
+        data-settings='{"id" : "flying.money.game"}'
+        data-handle-validation="true"
+    ></div>
+</body>
+</html>

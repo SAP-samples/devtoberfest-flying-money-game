@@ -1,0 +1,126 @@
+ <mvc:View controllerName="flying.money.game.controller.Leaderboard"
+  displayBlock="true"
+  xmlns="sap.m"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:core="sap.ui.core"
+  xmlns:f="sap.f">
+  <f:DynamicPage
+      id="leaderboardPage" 
+			stickySubheaderProvider="iconTabBar">
+    <f:title>
+			<f:DynamicPageTitle >
+				<f:heading>
+					<FlexBox class="width100" justifyContent="Center">
+						<Title text="{i18n>title}"/>
+					</FlexBox>
+				</f:heading>
+			</f:DynamicPageTitle>
+		</f:title>
+    <f:content>
+      
+      <VBox alignItems="Center" width="100%">
+        <VBox alignItems="Center" class="verticalWrapper">
+
+          <HBox
+            justifyContent="Center"
+            renderType="Bare">
+            <Button
+              text="{i18n>aboutGame}"
+              type="Transparent"
+              icon="sap-icon://information"
+              iconFirst="false"
+              press="handlePopoverPress" />
+          </HBox>
+
+          <HBox
+            justifyContent="SpaceBetween"
+            renderType="Bare"
+            class="sapUiSmallMarginTop" >
+            <Button
+                text="{i18n>practiceGame}"
+                press=".startGame"
+                type="Transparent" />
+            <Button
+            id="startGame"
+            text="{i18n>startGame}"
+            press=".startGame"
+            type="Emphasized"
+            icon="sap-icon://competitor"
+            iconFirst="false"
+            visible="{=${currentSession>/nicknameSet} ? ${tournaments>/tournaments/0/tournamentIsReady} ? true : false : false}" />
+          </HBox>
+
+          <HBox
+            class="sapUiMediumMarginTop"
+            justifyContent="Center"
+            renderType="Bare"
+            visible="{=${currentSession>/nicknameSet} ? false : true }" >
+            <Input
+              id="nickname"
+              placeholder="{i18n>enterNickname}"
+              enabled="{=${currentSession>/nicknameSet} ? false : true }" />
+            <Button
+              id="submitNickname"
+              text="{i18n>submitNickname}"
+              press=".submitNickname"
+              type="Emphasized"
+              class="sapUiTinyMarginBegin" />
+          </HBox>
+          <HBox
+            class="sapUiMediumMarginTop sapUiSmallMarginBegin"
+            alignItems="Center"
+            renderType="Bare"
+            visible="{currentSession>/nicknameSet}">
+            <Text
+              text="{=${i18n>registeredAs} + ${currentSession>/nickname}}" />
+            <Button
+              icon="sap-icon://edit"
+              type="Transparent"
+              class="sapUiTinyMarginBegin"
+              press=".editNickname" />
+          </HBox>
+
+          <BusyIndicator
+            id="waitingForTournamentBusyIndicator"
+            text="{i18n>waitingForTournament}"
+            class="sapUiMediumMarginTop"
+            visible="{=${currentSession>/nicknameSet} ? ${tournaments>/tournaments/0/tournamentIsReady} ? false : true : false}" />
+
+          <Panel
+            headerText="{i18n>leaderboard}"
+            class="sapUiMediumMarginTop width100maxWidth500"
+            visible="{=${currentSession>/nicknameSet} ? ${tournaments>/tournaments/0/tournamentIsReady} ? true : false : false}">
+            <List items="{  path: 'scores>/scores' }">
+              <StandardListItem title="{scores>userNickname}" info="{scores>score}" />
+            </List>
+          </Panel>
+          
+          <Panel
+            headerText="{i18n>availablePlayers}"
+            class="sapUiMediumMarginTopBottom width100maxWidth500"
+            visible="{=${tournaments>/tournaments/0/tournamentIsReady} ? false : true}">
+            <List items="{  path: 'users>/users' }">
+              <StandardListItem title="{users>nickname}" />
+            </List>
+          </Panel>
+          
+          <!-- <Select
+            class="sapUiMediumMarginTop"
+            change=".onSelectAvatar"
+            items="{
+              path: 'avatars>/avatars',
+              sorter: { path: 'avatars>name' }
+            }"
+            selectedKey="{avatars>/selectedAvatar}">
+            <core:Item key="{avatars>pic}" text="{avatars>name}" />
+          </Select> -->
+
+          <!-- <Button
+            text="openAdmin"
+            press=".openAdmin" /> -->
+
+        </VBox>
+      </VBox>
+    </f:content>
+	</f:DynamicPage>
+</mvc:View>

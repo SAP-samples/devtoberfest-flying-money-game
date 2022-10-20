@@ -1,0 +1,34 @@
+<mvc:View
+    controllerName="flying.money.game.controller.Game"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:cc="flying.money.game.control">
+     <f:DynamicPage
+        id="gamePage" 
+		stickySubheaderProvider="iconTabBar"
+		class="sapUiNoContentPadding">
+    <f:content>
+            <Panel id="the-panel" class="sapUiSmallMarginEnd" backgroundDesign="Transparent">
+                <OverflowToolbarButton type="Transparent" icon="sap-icon://nav-back" press="handleNavBack"  tooltip="{i18n>navBack}"/>
+                <VBox alignItems="Center" class="sapUiSmallMarginBottom">
+                    <Title
+                        titleStyle="H4"
+                        text="{mode>/mode}" />
+                    <Title titleStyle="H3" id="score" class="sapUiSmallMarginTop" text="{currentSession>/score}" />
+                </VBox>
+                <cc:GameControl />
+                
+                <VBox alignItems="Center" class="sapUiSmallMarginTopBottom">
+                    <Button
+                        id="start-button"
+                        text="{i18n>startAndJump}"
+                        class="sapUiSmallMarginTop"
+                        type="Emphasized"
+                        enabled="{=${currentSession>/endGame} ? false : true }" />
+                </VBox>
+            </Panel>
+        </f:content>
+	</f:DynamicPage>
+</mvc:View>

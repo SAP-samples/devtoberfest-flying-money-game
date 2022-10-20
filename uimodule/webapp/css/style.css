@@ -1,0 +1,78 @@
+/* Enter your custom styles here */
+
+.game-wrapper {
+    height: 400px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+#the-background {
+    /* height: calc(100% - 2px);
+    width: calc(100% - 2px); */
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    /* border: 1px solid var(--sapIllus_Layering2); */
+    border-radius: 15px;
+}
+
+#the-ball {
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    top: calc(50% - 20px);
+    left: calc(50% - 20px);
+}
+
+#the-foreground {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    /* border: 1px solid var(--sapIllus_Layering2); */
+    border-radius: 15px;
+    background-color: black;
+    opacity: .75;
+    z-index: 1;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.whiteText {
+    color: white !important;
+}
+
+.greenText {
+    color: #256f3a;
+}
+  
+.pipe {
+    position: absolute;
+    height: 70%;
+    width: 70px;
+    left: 100%;
+    border-radius: 15px;
+    background-color: var(--sapIllus_Layering2);
+}
+
+.sapFDynamicPageTitleMainHeading, .sapFDynamicPageTitleMainHeadingInner, .width100 {
+    width: 100%;
+}
+
+.verticalWrapper {
+    width: 100%;
+    max-width: 500px;
+}
+
+.verticalWrapper div:not(.sapMBusyIndicator div) {
+    width: 100%;
+}
+
+.actionIcon::after {
+    font-size: .8rem;
+    font-family: SAP-Icons;
+    content: "\0081\e05a";
+}

@@ -1,0 +1,26 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<ResponsivePopover
+		id="aboutPopover"
+		class="sapUiContentPadding"
+        showHeader="false"
+		placement="Bottom" >
+		<endButton>
+			<Button text="{i18n>close}" press="handleCloseButton" />
+		</endButton>
+		<content>
+            <VBox>
+                <Text text="{i18n>partOfDevtoberfest}" />
+                <Link
+                    href="https://groups.community.sap.com/t5/devtoberfest-blog-posts/devtoberfest-welcome/ba-p/9358"
+                    target="_blank"
+                    text="{i18n>checkOutCommunity}"
+                    class="sapUiMediumMarginTop actionIcon" />
+                <Text
+                    text="{i18n>entertainmentPurpose}"
+                    class="sapUiMediumMarginTop" />
+            </VBox>
+		</content>
+	</ResponsivePopover>
+</core:FragmentDefinition>
