@@ -1,11 +1,10 @@
 sap.ui.define([
-    "./BaseController",
-	"sap/m/MessageToast"
+    "./BaseController"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, MessageToast) {
+    function (Controller) {
         "use strict"
 
         return Controller.extend("flying.money.game.controller.Game", {
@@ -14,7 +13,7 @@ sap.ui.define([
                         this._postScore()
                     })
             },
-            _postScore: function() {
+            _postScore: async function() {
                 const oView = this.getView()
                 const oComponent = this.getOwnerComponent()
 
@@ -35,20 +34,33 @@ sap.ui.define([
                 const oModel = oComponent.getModel("mode")
                 if (oModel.getProperty("/isTournament")) {
                     const firebase = this._getFirebase()
-                    const collectionRef = this._getScoreCollection(false) // not sorted
-                    const { serverTimestamp } = firebase.firestore.FieldValue
-                    collectionRef.add({
-                        userID: firebase.auth().currentUser.uid,
-                        userNickname: window.localStorage.getItem("nickname"),
-                        score: parseInt(oView.byId("score").getText()),
-                        timestamp: serverTimestamp()
+                    const userID = firebase.auth().currentUser.uid
+                    const score = parseInt(oView.byId("score").getText())
+                    
+                    let collectionRef = this._getScoreCollection(false, userID) // not sorted, with user condition
+                    const snapshot = await collectionRef.get()
+                    const userScores = snapshot.docs.map(doc => {
+                        return doc.data()
                     })
-                    // MessageToast.show(i18nModel.getProperty("scorePosted"), {
-                    //     of: oView,
-                    //     offset: "0 -50",
-                    //     duration: 3000
-                    // })
-                    oView.byId("scoreStatus").setText(i18nModel.getProperty("scorePosted"))
+
+                    const { serverTimestamp } = firebase.firestore.FieldValue
+                    const body = {
+                        userID: userID,
+                        userNickname: window.localStorage.getItem("nickname"),
+                        score: score,
+                        timestamp: serverTimestamp()
+                    }
+
+                    if (userScores.length == 0) {
+                        oView.byId("scoreStatus").setText(i18nModel.getProperty("scorePosted"))
+                        collectionRef = this._getScoreCollection(false) // not sorted
+                        collectionRef.add(body)
+                    } else if (score > userScores[0].score) {
+                        oView.byId("scoreStatus").setText(i18nModel.getProperty("scorePosted"))
+                        snapshot.docs.map(doc => doc.ref.update(body))
+                    } else {
+                        oView.byId("scoreStatus").setText(i18nModel.getProperty("noHighscore"))
+                    }
                 } else {
                     oView.byId("scoreStatus").setText(i18nModel.getProperty("practice"))
                 }          

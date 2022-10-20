@@ -67,7 +67,7 @@
     max-width: 500px;
 }
 
-.verticalWrapper div:not(.sapMBusyIndicator div) {
+.verticalWrapper div:not(.sapMBusyIndicator div, .sapMIBar div) {
     width: 100%;
 }
 

@@ -91,9 +91,22 @@
             headerText="{i18n>leaderboard}"
             class="sapUiMediumMarginTop width100maxWidth500"
             visible="{=${currentSession>/nicknameSet} ? ${tournaments>/tournaments/0/tournamentIsReady} ? true : false : false}">
-            <List items="{  path: 'scores>/scores' }">
-              <StandardListItem title="{scores>userNickname}" info="{scores>score}" />
-            </List>
+            <headerToolbar>
+              <Toolbar>
+                <HBox
+                  justifyContent="SpaceBetween"
+                  alignItems="Center"
+                  width="100%">
+                  <Title text="{i18n>leaderboard}" />
+                  <SearchField width="150px" liveChange=".onSearch" />
+                </HBox>
+              </Toolbar>
+            </headerToolbar>
+            <content>
+              <List id="leaderboardList" items="{  path: 'scores>/scores' }">
+                <StandardListItem title="{scores>userNickname}" info="{scores>score}" />
+              </List>
+            </content>
           </Panel>
           
           <Panel

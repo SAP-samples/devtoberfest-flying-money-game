@@ -5,7 +5,9 @@ sap.ui.define([
     "sap/m/Text",
     "sap/m/Button",
     'sap/ui/core/Fragment',
-], function (Controller, JSONModel, Dialog, Text, Button, Fragment) {
+    "sap/ui/model/Filter",
+    "sap/ui/model/FilterOperator"
+], function (Controller, JSONModel, Dialog, Text, Button, Fragment, Filter, FilterOperator) {
     "use strict"
 
     return Controller.extend("flying.money.game.controller.Leaderboard", {
@@ -169,6 +171,16 @@ sap.ui.define([
             oModel.setProperty("/mode", mode)
             oModel.setProperty("/isPractice", mode != "Tournament")
             oModel.setProperty("/isTournament", mode == "Tournament")
+        },
+        onSearch: function (oEvent) {
+            let aFilter = []
+            const sQuery = oEvent.getParameter("newValue")
+            if (sQuery) {
+                aFilter.push(new Filter("userNickname", FilterOperator.Contains, sQuery))
+            }
+            const oList = this.byId("leaderboardList")
+            let oBinding = oList.getBinding("items")
+            oBinding.filter(aFilter)
         },
         onSelectAvatar: function (oEvent) {
             document.querySelector("#the-ball").src = oEvent.getSource().getSelectedKey()
