@@ -87,6 +87,9 @@ sap.ui.define([
 			if (window.gameState !== "Ready") return
 			window.gameState = "Play"
 
+			const event = new Event("startGame")
+			window.dispatchEvent(event)
+
 			const moveSpeed = 3
 			const gravity = 0.5
 			const pipeGapY = 50

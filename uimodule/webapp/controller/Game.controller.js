@@ -12,6 +12,13 @@ sap.ui.define([
                 window.addEventListener("endGame", (e) => {                        
                         this._postScore()
                     })
+                window.addEventListener("startGame", (e) => {
+                    this._clearScoreStatus()
+                })
+            },
+            _clearScoreStatus: function () {
+                const oView = this.getView()
+                oView.byId("scoreStatus").setText("")
             },
             _postScore: async function() {
                 const oView = this.getView()
