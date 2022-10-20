@@ -181,14 +181,26 @@ sap.ui.define([
             this._closeTournamentDialog()
             const oComponent = this.getOwnerComponent()
             const i18nModel = oComponent.getModel("i18n")
-            const oModel = oComponent.getModel("tournaments")
-            const tournamentIsReady = oModel.getProperty("/tournaments/0/tournamentIsReady")
+            const tournamentModel = oComponent.getModel("tournaments")
+            const tournamentIsReady = tournamentModel.getProperty("/tournaments/0/tournamentIsReady")
             let dialogText, buttonText
+            let icon = "sap-icon://competitor"
             if (tournamentIsReady) {
                 dialogText =  i18nModel.getProperty("tournamentReady"),
                 buttonText = i18nModel.getProperty("startGame")
             } else {
-                dialogText =  i18nModel.getProperty("tournamentEnded"),
+                icon = ""
+                const scoresModel = oComponent.getModel("scores")
+                const dialogText1 =  i18nModel.getProperty("tournamentEnded")
+                const scores = scoresModel.getProperty("/scores")
+                if (scores.length >= 3) {
+                    const dialogText2 = `${scores[0].userNickname} (${scores[0].score} ${i18nModel.getProperty("points")})`
+                    const dialogText3 = `${scores[1].userNickname} (${scores[1].score} ${i18nModel.getProperty("points")})`
+                    const dialogText4 = `${scores[2].userNickname} (${scores[2].score} ${i18nModel.getProperty("points")})`
+                    dialogText = dialogText1 + "\n\n" + dialogText2 + "\n" + dialogText3 + "\n" + dialogText4
+                } else {
+                    dialogText = dialogText1
+                }
                 buttonText = i18nModel.getProperty("practiceGame")
             }
             
@@ -200,7 +212,7 @@ sap.ui.define([
                 buttons: new Button({
                     text: buttonText,
                     type: "Emphasized",
-                    icon: "sap-icon://competitor",
+                    icon: icon,
                     iconFirst: false,
                     press: function () {
                         this.oDialog.close();

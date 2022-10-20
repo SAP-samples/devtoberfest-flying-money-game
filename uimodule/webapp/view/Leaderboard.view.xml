@@ -73,11 +73,12 @@
             visible="{currentSession>/nicknameSet}">
             <Text
               text="{=${i18n>registeredAs} + ${currentSession>/nickname}}" />
-            <Button
+            <!-- feature not quite ready yet -->
+            <!-- <Button
               icon="sap-icon://edit"
               type="Transparent"
               class="sapUiTinyMarginBegin"
-              press=".editNickname" />
+              press=".editNickname" /> -->
           </HBox>
 
           <BusyIndicator
