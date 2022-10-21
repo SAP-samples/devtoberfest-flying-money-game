@@ -57,7 +57,7 @@ sap.ui.define([
                         score: score,
                         timestamp: serverTimestamp()
                     }
-
+                    
                     if (userScores.length == 0) {
                         oView.byId("scoreStatus").setText(i18nModel.getProperty("scorePosted"))
                         collectionRef = this._getScoreCollection(false) // not sorted

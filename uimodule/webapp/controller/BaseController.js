@@ -80,11 +80,9 @@ sap.ui.define([
                 let collectionRef
                 if (sorted) {
                     collectionRef = db.collection("scores").orderBy("score", "desc")
-                } 
-                else if (userID) {
+                } else if (userID) {
                     collectionRef = db.collection("scores").where("userID", "==", userID)
-                } 
-                else {
+                } else {
                     collectionRef = db.collection("scores")
                 }
                 

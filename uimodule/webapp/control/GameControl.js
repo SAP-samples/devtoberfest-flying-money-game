@@ -36,15 +36,18 @@ sap.ui.define([
 
 			const background = document.createElement("div")
 			background.id = "the-background"
-			background.classList.add("sapMIBar")
-			background.classList.add("sapMHeader-CTX")
+			// background.classList.add("sapMIBar")
+			// background.classList.add("sapMHeader-CTX")
 			gameWrapper.appendChild(background)
 
 			const ball = document.createElement("img")
 			ball.id = "the-ball"
-			
 			ball.src = oComponent.getModel("avatars").getData().selectedAvatar
 			gameWrapper.appendChild(ball)
+
+			const movingBackground = document.createElement("div");
+			movingBackground.id = "movingBackground";
+			gameWrapper.appendChild(movingBackground)
 
 			const foreground = document.createElement("div")
 			foreground.id = "the-foreground"
@@ -92,7 +95,7 @@ sap.ui.define([
 
 			const moveSpeed = 3
 			const gravity = 0.5
-			const pipeGapY = 50
+			const pipeGapY = 310
 			const pipeGapX = 115
 
 			const gameWrapper = document.getElementById("the-game-wrapper")
@@ -138,6 +141,12 @@ sap.ui.define([
 						}
 						element.style.left = `${pipeProps.left - backgroundProps.left - moveSpeed}px`
 					})
+
+					const movingBackground = document.querySelector("#movingBackground")
+					const movingBackgroundProps = movingBackground.getBoundingClientRect()
+					movingBackground.style.left = `${movingBackgroundProps.left - backgroundProps.left - moveSpeed}px`;
+					movingBackground.style.width = `${movingBackgroundProps.width + moveSpeed}px`;
+
 					requestAnimationFrame(move)
 				}
 				requestAnimationFrame(move)
@@ -157,7 +166,7 @@ sap.ui.define([
 
 				if (
 					ballProps.top <= backgroundProps.top ||
-					ballProps.bottom >= backgroundProps.bottom
+					ballProps.bottom >= (backgroundProps.bottom - 0)
 				) {
 					const event = new Event("endGame")
 					window.dispatchEvent(event)
@@ -178,15 +187,18 @@ sap.ui.define([
 				if (currentPipeGapX >= pipeGapX) {
 					currentPipeGapX = 0
 
-					const pipePosition = Math.floor(Math.random() * 43) + 8
-					const pipeTop = document.createElement("div")
+					const pipePosition = Math.floor(Math.random() * 65)
+					const pipeTop = document.createElement("img")
 					pipeTop.classList.add("pipe")
-					pipeTop.style.top = `${pipePosition - 70}%`
+					pipeTop.src = "../cloud.png"
+					pipeTop.style.top = `${pipePosition - 675}px`
 					gameWrapper.appendChild(pipeTop)
 
-					const pipeBottom = document.createElement("div")
+					const pipeBottom = document.createElement("img")
 					pipeBottom.classList.add("pipe")
-					pipeBottom.style.top = `${pipePosition + pipeGapY}%`
+					pipeBottom.src = "../mountain.png"
+					pipeBottom.style.top = `${pipePosition + pipeGapY - 25}px`
+					// pipeBottom.style.height = `${400 - pipePosition - pipeGapY}px`
 					pipeBottom.increaseScore = "1"
 					gameWrapper.appendChild(pipeBottom)
 				}
@@ -213,7 +225,7 @@ sap.ui.define([
 			})
 
 			document.querySelector("#the-foreground").style.display = "none"
-		},
+		}
 
 	})
 
