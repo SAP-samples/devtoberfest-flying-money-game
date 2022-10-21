@@ -92,7 +92,7 @@ sap.ui.define([
 
 			const event = new Event("startGame")
 			window.dispatchEvent(event)
-			
+
 			const moveSpeed = 3
 			const gravity = 0.5
 			const pipeGapY = 310
