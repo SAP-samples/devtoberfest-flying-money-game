@@ -51,8 +51,7 @@
     position: absolute;
     /* border: 1px solid var(--sapIllus_Layering2); */
     border-radius: 15px;
-    background-color: black;
-    opacity: .75;
+    background-color: rgb(0, 0, 0, .75);
     z-index: 2;
 
     display: none;

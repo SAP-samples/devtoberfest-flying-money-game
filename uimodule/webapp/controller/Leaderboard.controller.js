@@ -54,6 +54,8 @@ sap.ui.define([
                             users: users
                         }
                         that.getOwnerComponent().setModel(new JSONModel(oUsers), "users")
+
+                        console.log(users.map(user => { return user.nickname }))
                     })
 
                     const scoreCollectionRef = that._getScoreCollection(true) // sorted

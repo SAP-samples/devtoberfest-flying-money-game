@@ -190,13 +190,13 @@ sap.ui.define([
 					const pipePosition = Math.floor(Math.random() * 65)
 					const pipeTop = document.createElement("img")
 					pipeTop.classList.add("pipe")
-					pipeTop.src = "../cloud.png"
+					pipeTop.src = "../chandelier.png"
 					pipeTop.style.top = `${pipePosition - 675}px`
 					gameWrapper.appendChild(pipeTop)
 
 					const pipeBottom = document.createElement("img")
 					pipeBottom.classList.add("pipe")
-					pipeBottom.src = "../mountain.png"
+					pipeBottom.src = "../machine.png"
 					pipeBottom.style.top = `${pipePosition + pipeGapY - 25}px`
 					// pipeBottom.style.height = `${400 - pipePosition - pipeGapY}px`
 					pipeBottom.increaseScore = "1"
