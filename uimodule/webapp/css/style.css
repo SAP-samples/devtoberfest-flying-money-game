@@ -17,7 +17,7 @@
     /* border: 1px solid var(--sapIllus_Layering2); */
     border-radius: 15px;
 
-    z-index: -2;
+    z-index: -1;
     background-image: url("../background1.png");
     background-size: cover;
     background-repeat: repeat;
@@ -53,7 +53,7 @@
     border-radius: 15px;
     background-color: black;
     opacity: .75;
-    z-index: 1;
+    z-index: 2;
 
     display: none;
     align-items: center;
@@ -70,13 +70,13 @@
   
 .pipe {
     position: absolute;
-    height: 96px;
+    /* height: 96px; */
     width: 142px;
     left: 100%;
     /* border-radius: 15px;
     background-color: var(--sapIllus_Layering2); */
 
-    z-index: -1;
+    z-index: 1;
 }
 
 .sapFDynamicPageTitleMainHeading, .sapFDynamicPageTitleMainHeadingInner, .width100 {

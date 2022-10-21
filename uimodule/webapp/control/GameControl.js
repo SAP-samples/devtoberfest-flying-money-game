@@ -163,7 +163,7 @@ sap.ui.define([
 
 				if (
 					ballProps.top <= backgroundProps.top ||
-					ballProps.bottom >= (backgroundProps.bottom - 100)
+					ballProps.bottom >= (backgroundProps.bottom - 0)
 				) {
 					const event = new Event("endGame")
 					window.dispatchEvent(event)
@@ -188,14 +188,14 @@ sap.ui.define([
 					const pipeTop = document.createElement("img")
 					pipeTop.classList.add("pipe")
 					pipeTop.src = "../cloud.png"
-					pipeTop.style.top = `${pipePosition}px`
+					pipeTop.style.top = `${pipePosition - 675}px`
 					gameWrapper.appendChild(pipeTop)
 
 					const pipeBottom = document.createElement("img")
 					pipeBottom.classList.add("pipe")
 					pipeBottom.src = "../mountain.png"
-					pipeBottom.style.bottom = "95px"
-					pipeBottom.style.height = `${400 - pipePosition - pipeGapY}px`
+					pipeBottom.style.top = `${pipePosition + pipeGapY - 25}px`
+					// pipeBottom.style.height = `${400 - pipePosition - pipeGapY}px`
 					pipeBottom.increaseScore = "1"
 					gameWrapper.appendChild(pipeBottom)
 				}
