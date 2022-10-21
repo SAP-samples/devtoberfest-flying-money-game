@@ -90,6 +90,9 @@ sap.ui.define([
 			if (window.gameState !== "Ready") return
 			window.gameState = "Play"
 
+			const event = new Event("startGame")
+			window.dispatchEvent(event)
+			
 			const moveSpeed = 3
 			const gravity = 0.5
 			const pipeGapY = 310
@@ -184,7 +187,7 @@ sap.ui.define([
 				if (currentPipeGapX >= pipeGapX) {
 					currentPipeGapX = 0
 
-					const pipePosition = Math.floor(Math.random() * 60)
+					const pipePosition = Math.floor(Math.random() * 65)
 					const pipeTop = document.createElement("img")
 					pipeTop.classList.add("pipe")
 					pipeTop.src = "../cloud.png"

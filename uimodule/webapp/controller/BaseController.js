@@ -73,13 +73,15 @@ sap.ui.define([
                 const collectionRef = db.collection("users")
                 return collectionRef
             },
-            _getScoreCollection: function(sorted) {
+            _getScoreCollection: function(sorted, userID) {
                 const mFirebase = this.getOwnerComponent().getModel("firebase")
                 const firebase = mFirebase.getData()
                 const db = firebase.firestore()
                 let collectionRef
                 if (sorted) {
                     collectionRef = db.collection("scores").orderBy("score", "desc")
+                } else if (userID) {
+                    collectionRef = db.collection("scores").where("userID", "==", userID)
                 } else {
                     collectionRef = db.collection("scores")
                 }
